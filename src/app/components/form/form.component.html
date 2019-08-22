@@ -8,27 +8,28 @@
           review.</p>
         <p class="red-text">required *</p>
         <div class="row">
-          <form class="col s12">
+          <form class="col s12" (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm" >
+            {{myForm.value | json}}
             <div class="row">
               <div class="input-field col s12">
                 <input class="validate" formControlName="email" id="email" placeholder="Your Email" type="email">
                 <label for="email">Email *</label>
               </div>
               <div class="input-field col s12">
-                <input class="validate" formControlName="fullname" id="fullName" placeholder="Your Name" type="text">
+                <input class="validate" formControlName="fullName" id="fullName" placeholder="Your Name" type="text">
                 <label for="fullName">Full Name *</label>
               </div>
               <div class="col s12">
                 <label>Track *</label>
                 <p>
                   <label>
-                    <input name="group1" type="radio" checked />
+                    <input name="track" formControlName="track" type="radio" checked />
                     <span>Android</span>
                   </label>
                 </p>
                 <p>
                   <label>
-                    <input name="group1" type="radio" />
+                    <input name="track" formControlName="track" type="radio" />
                     <span>Cloud</span>
                   </label>
                 </p>
@@ -38,36 +39,29 @@
 
               <div class="screenshots">
                 <div class="input-field col s12">
-                  <input id="full_name" placeholder="Your Answer" type="text" class="validate">
-                  <label for="full_name">Link to your Screenshots folder *</label>
+                  <input id="screenshots" formControlName="screenshots" placeholder="Your Answer" type="text" class="validate">
+                  <label for="screenshots">Link to your Screenshots folder *</label>
                   <small>We expect you to have finished the challenge and have added the files to an open folder</small>
                 </div>
               </div>
-
-
-
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="github" type="url" placeholder="Github URL" class="validate">
+                <input id="github" type="url" formControlName="githubURL" placeholder="Github URL" class="validate">
                 <label for="github">Link to project Repo Github (Android Only)</label>
               </div>
             </div>
 
             <div class="row">
               <div class="input-field col s12">
-                <textarea id="feedback" class="materialize-textarea" placeholder="Your Answer"></textarea>
+                <textarea id="feedback" formControlName="feedback" class="materialize-textarea" placeholder="Your Answer"></textarea>
                 <label for="feedback">Feedback</label>
               </div>
             </div>
-            <input type="submit" class="waves-effect waves-light btn white-text" value="Submit" />
+            <input [disabled]="myForm.invalid" type="submit" class="waves-effect waves-light btn white-text" value="Submit" />
           </form>
         </div>
-
-
-
       </div>
-
     </div>
 
     <div class="footer">
@@ -77,10 +71,7 @@
     </div>
     <div>
       <p class="center-align"><img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_dark_clr_74x24px.svg" alt="Google" height="24px" width="74px"></p>
-
     </div>
-
-    <!-- FIXED ACTION BUTTON -->
     <div class="fixed-action-btn">
       <a href="#" class="btn-floating grey btn-sm"><i class="large material-icons">mode_comment</i></a>
     </div>
