@@ -1,0 +1,8 @@
+.topFlaTarea {
+  background-color: rgb(103, 58, 183);
+  color: rgba(255, 255, 255, 1);
+}
+
+.topFlaTarea>.FormBanner {
+  height: 278px;
+}

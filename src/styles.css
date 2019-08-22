@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Roboto', 'RobotoDraft';
+  background: #ede7f6;
+}
+
+/* label color */
+.input-field label,
+label {
+  color: #000;
+  font-size: 19px;
+}
+
+/* label focus color */
+.input-field input:focus+label,
+textarea:focus+label {
+  color: #3f51b5 !important;
+}
+
+/* label underline focus color */
+.input-field input:focus,
+textarea:focus {
+  border-bottom: 1px solid #3f51b5 !important;
+  box-shadow: 0 1px 0 0 #3f51b5 !important;
+}
+
+input[type='submit'],
+.btn {
+  background-color: #3f51b5 !important;
+}
