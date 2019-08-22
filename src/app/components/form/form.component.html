@@ -11,15 +11,15 @@
           <form class="col s12">
             <div class="row">
               <div class="input-field col s12">
-                <input placeholder="Your Email" id="email" type="email" class="validate">
+                <input class="validate" formControlName="email" id="email" placeholder="Your Email" type="email">
                 <label for="email">Email *</label>
               </div>
               <div class="input-field col s12">
-                <input id="full_name" placeholder="Your Name" type="text" class="validate">
-                <label for="full_name">Full Name *</label>
+                <input class="validate" formControlName="fullname" id="fullName" placeholder="Your Name" type="text">
+                <label for="fullName">Full Name *</label>
               </div>
               <div class="col s12">
-                <label for="track">Track *</label>
+                <label>Track *</label>
                 <p>
                   <label>
                     <input name="group1" type="radio" checked />
@@ -64,9 +64,27 @@
           </form>
         </div>
 
+
+
       </div>
+
+    </div>
+
+    <div class="footer">
+      <p class="center-align">This content is neither created nor endorsed by Google.<p>
+      <p class="center-align">Report Abuse - Terms of Service</p>
+
+    </div>
+    <div>
+      <p class="center-align"><img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_dark_clr_74x24px.svg" alt="Google" height="24px" width="74px"></p>
+
+    </div>
+
+    <!-- FIXED ACTION BUTTON -->
+    <div class="fixed-action-btn">
+      <a href="#" class="btn-floating grey btn-sm"><i class="large material-icons">mode_comment</i></a>
     </div>
   </div>
 
-  <div class="col s3 m0 hide-on-small-only"></div>
+  <div class="col s3"></div>
 </div>
