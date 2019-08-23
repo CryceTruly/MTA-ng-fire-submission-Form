@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp()
 
-exports.sendEmailFunction=functions.firestore.document("formsubmissions")
+exports.sendEmailFunction=functions.firestore.document("submissions/{docId}")
   .onCreate((snap,ctx)=>{
 const formData=snap.data();
 console.log(formData)
