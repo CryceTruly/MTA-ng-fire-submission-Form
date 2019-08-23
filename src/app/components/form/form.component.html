@@ -9,7 +9,7 @@
         <div *ngIf="!submitted else showSubmitted">
         <p class="red-text">required *</p>
         <div class="row">
-          <form class="col s12" (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm" >
+          <form class="col s12" autocomplete="off" (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm" >
             <div class="row">
               <div class="input-field col s12">
                 <input class="validate" required formControlName="email" id="email"  type="email">
