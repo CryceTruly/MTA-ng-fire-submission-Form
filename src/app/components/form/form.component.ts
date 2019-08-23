@@ -13,11 +13,11 @@ export class FormComponent implements OnInit {
   myForm: FormGroup;
   private submissionsCollection: AngularFirestoreCollection<any>;
   isSubmitting: boolean;
-  submitted:boolean;
+  submitted: boolean;
 
   constructor(private fb: FormBuilder, private afs: AngularFirestore, public afAuth: AngularFireAuth) {
     this.isSubmitting = false;
-    this.submitted=false;
+    this.submitted = false;
   }
 
   ngOnInit() {
@@ -46,4 +46,17 @@ export class FormComponent implements OnInit {
 
   }
 
+  changeUserTrack(choice: string) {
+    console.log(choice);
+    const githubControl = this.myForm.get('githubURL');
+    if (choice === 'Android') {
+  githubControl.setValidators(Validators.required);
+
+} else {
+githubControl.clearValidators();
+}
+
+    githubControl.updateValueAndValidity();
+
+  }
 }
