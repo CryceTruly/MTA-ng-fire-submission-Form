@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {log} from 'util';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {auth} from 'firebase';
 
 @Component({
   selector: 'app-form',
@@ -9,15 +11,21 @@ import {log} from 'util';
 })
 export class FormComponent implements OnInit {
   myForm: FormGroup;
+  private submissionsCollection: AngularFirestoreCollection<any>;
+  isSubmitting: boolean;
+  submitted:boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private afs: AngularFirestore, public afAuth: AngularFireAuth) {
+    this.isSubmitting = false;
+    this.submitted=false;
   }
 
   ngOnInit() {
+    this.submissionsCollection = this.afs.collection('submissions');
 
     this.myForm = this.fb.group({
       fullName: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       feedback: [''],
       track: ['', Validators.required],
       githubURL: [''],
@@ -27,7 +35,15 @@ export class FormComponent implements OnInit {
 
   }
   onSubmit(data) {
-    console.log(data);
+    this.isSubmitting = true;
+    this.submissionsCollection.add(data).then(res => {
+      this.submitted = true;
+    }).catch(_ => {
+    }).finally(() => {
+    this.isSubmitting = false;
+    });
+
+
   }
 
 }
