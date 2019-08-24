@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  firebase: {
+    apiKey: 'AIzaSyBTKbpbuEFBxBX9AyTLW4cD0O3m8NosZiU',
+    authDomain: 'trulyblog-app.firebaseapp.com',
+    databaseURL: 'https://trulyblog-app.firebaseio.com',
+    projectId: 'trulyblog-app',
+    storageBucket: 'trulyblog-app.appspot.com',
+    messagingSenderId: '85077372730',
+    appId: '1:85077372730:web:ed47c509cbee225e'
+  }
 };
 
 /*
