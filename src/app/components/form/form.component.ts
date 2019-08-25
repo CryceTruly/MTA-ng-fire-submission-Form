@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {auth} from 'firebase';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as validUrl from 'valid-url';
 
 @Component({
   selector: 'app-form',
@@ -22,16 +22,17 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.submissionsCollection = this.afs.collection('submissions');
-
     this.myForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      feedback: [''],
+      feedback: ['', Validators.required],
       track: ['', Validators.required],
       githubURL: [''],
-      screenshots: ['', Validators.required]
+      screenshots: ['', [Validators.required, this.isValidURL]]
 
     });
+
+    this.changeUserTrack('Android');
 
   }
   onSubmit(data) {
@@ -40,23 +41,27 @@ export class FormComponent implements OnInit {
       this.submitted = true;
     }).catch(_ => {
     }).finally(() => {
-    this.isSubmitting = false;
+      this.isSubmitting = false;
     });
-
-
   }
 
   changeUserTrack(choice: string) {
-    console.log(choice);
     const githubControl = this.myForm.get('githubURL');
     if (choice === 'Android') {
-  githubControl.setValidators(Validators.required);
+      githubControl.setValidators([Validators.required, this.isValidURL]);
 
-} else {
-githubControl.clearValidators();
-}
+    } else {
+      githubControl.clearValidators();
+    }
 
     githubControl.updateValueAndValidity();
 
+  }
+
+  isValidURL(control: FormControl): { [key: string]: boolean } | null {
+    if (control.value.length > 1 && !validUrl.isHttpUri(control.value)) {
+      return { isValid: true };
+    }
+    return null;
   }
 }
